@@ -1,0 +1,41 @@
+<ion-view view-title="Status">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-clear button-positive" ng-click="toggleService()">
+            <span ng-show="serviceStatus">Parar serviço</span>
+            <span ng-hide="serviceStatus">Continuar serviço</span>
+        </button>
+    </ion-nav-buttons>
+
+  <ion-content scroll="false" on-swipe-left="goForward()">
+
+    <div id="sensores" class="item row text-center">
+
+      <div class="col">
+          <p class="title">Internet</p>
+          <p>
+              <ion-spinner icon="lines" ng-hide="internetActive"></ion-spinner>
+              <i class="icon ion-checkmark" ng-show="internetActive"></i>
+          </p>
+      </div>
+
+      <div class="col">
+          <p class="title">GPS</p>
+          <p>
+              <ion-spinner icon="lines" ng-show="gpsError"></ion-spinner>
+              <i class="icon ion-checkmark" ng-hide="gpsError"></i>
+          </p>
+      </div>
+    </div>
+
+    <div id="liveMap" class="item" data-tap-disabled="true">
+
+        <div id="liveMapMessage" ng-hide="loadingMap" ng-click="loadMap()">
+          Toque aqui para ver o mapa em tempo real
+        </div>
+
+        <ion-spinner ng-show="loadingMap" icon="lines"></ion-spinner>
+    </div>
+
+  </ion-content>
+</ion-view>

@@ -1,0 +1,28 @@
+{
+  "serviceFactory": "com.red_folder.phonegap.plugin.backgroundservice.BackgroundService",
+  "serviceName": "com.red_folder.phonegap.plugin.gpsservice.GpsService",
+	"mapOptions": {
+		"zoom": 18,
+		"mapTypeId": "roadmap",
+    "disableDefaultUI": true,
+		"updateInterval": 5000
+	},
+	"gpsOptions": {
+    "useGps": true,
+    "useNetwork": false,
+		"gpsInterval": 5000,
+    "gpsBackgroundInterval": 10000,
+    "gpsAccuracy": 0,
+    "gpsMinDistance": 0,
+    "gpsAge": 0,
+		"watchInterval": 5000
+	},
+	"circleOptions": {
+		"defaultRadius": 30,
+		"strokeColor": "#FF0000",
+		"strokeOpacity": 0.8,
+		"strokeWeight": 1,
+		"fillColor": "#FF0000",
+		"fillOpacity": 0.3
+	}
+}

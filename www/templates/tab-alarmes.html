@@ -1,0 +1,95 @@
+<ion-view view-title="Alarmes">
+
+    <ion-nav-buttons side="right">
+
+        <a class="button button-icon icon ion-ios-plus-empty"
+           ng-hide="deleteMode"
+           ng-click="newAlarm()">
+        </a>
+
+        <a class="button button-icon icon"
+           ng-class="deleteMode ? 'ion-ios-checkmark-outline' : 'ion-ios-trash-outline'"
+           ng-click="deleteHandler()">
+        </a>
+
+        <button class="button button-clear button-positive" ng-click="clearDelete()">
+            <span ng-show="deleteMode">Cancelar</span>
+        </button>
+    </ion-nav-buttons>
+
+  <ion-content class="padding" on-swipe-right="goBack()" on-swipe-left="goForward()">
+
+    <ion-list class="list">
+        <ion-item class="item item-button-right"
+                  ng-repeat="alarm in alarms"
+                  ng-click="markForDeletion(alarm.id)"
+                  ng-class="{'delete-mark': markedForDeletion.indexOf(alarm.id) != -1}">
+
+            <span class="alarm-item-title">
+                {{alarm.title}}
+            </span>
+
+            <div class="buttons">
+                <a class="button button-icon icon ion-ios-compose-outline"
+                   ng-click="editAlarm($index)"></a>
+
+                <button class="button button-toggle"
+                        ng-class="alarm.enabled ? 'button-balanced' : 'button-assertive'"
+                        ng-click="toggleEnabled($index)">
+                </button>
+            </div>
+        </ion-item>
+
+        <ion-item class="item" ng-show="!alarms || !alarms.length">
+            <span class="alarm-item-title">
+                Nenhum alarme registrado!
+            </span>
+        </ion-item>
+
+    </ion-list>
+
+    <!-- Modal create/edit alarm -->
+    <script id="alarmDetails.html" type="text/ng-template">
+      <ion-modal-view>
+
+        <ion-header-bar>
+          <p class="title">{{modal.title}}</p>
+
+          <button class="button button-clear button-positive"
+                  ng-click="modal.hide()">
+                Cancelar
+            </button>
+        </ion-header-bar>
+
+        <ion-content scroll="false">
+
+            <form name="novoAlarme" class="full-height">
+                <div class="list list-inset spaced-list full-height">
+
+                  <label class="item item-input">
+                    <input type="text" placeholder="Nome" ng-model="currentAlarm.title" required>
+                  </label>
+
+                  <input id="pac-input" class="controls" type="text"
+                        placeholder="Search Box" ng-focus="disableTap()"
+                        ng-hide="loadingMap" data-tap-disabled="true">
+
+                  <div id="alarmMap" class="item" data-tap-disabled="true">
+                    <ion-spinner icon="lines"></ion-spinner>
+                  </div>
+
+                  <button class="item button button-full button-balanced"
+                          ng-click="saveCurrentAlarm()"
+                          ng-disabled="novoAlarme.$invalid">
+                    Salvar!
+                  </button>
+                </div>
+            </form>
+
+        </ion-content>
+
+      </ion-modal-view>
+    </script>
+
+  </ion-content>
+</ion-view>
